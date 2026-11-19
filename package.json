@@ -1,0 +1,137 @@
+{
+  "name": "branch-memo",
+  "displayName": "Branch Memo",
+  "description": "Add notes to your git branches. Edit, switch, delete and copy branch names from one side panel.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "SCM Providers",
+    "Other"
+  ],
+  "icon": "assets/git_icon.png",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onView:gitBranchDescription.branches"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gitBranchDescription",
+          "title": "Git Branches",
+          "icon": "assets/git-branch.svg"
+        }
+      ]
+    },
+    "views": {
+      "gitBranchDescription": [
+        {
+          "id": "gitBranchDescription.branches",
+          "name": "Branches"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "gitBranchDescription.edit",
+        "title": "Edit Description"
+      },
+      {
+        "command": "gitBranchDescription.switch",
+        "title": "Switch Branch",
+        "icon": "$(arrow-swap)"
+      },
+      {
+        "command": "gitBranchDescription.delete",
+        "title": "Delete Branch",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "gitBranchDescription.copyName",
+        "title": "Copy Branch Name",
+        "icon": "$(copy)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "gitBranchDescription.edit",
+          "when": "false"
+        },
+        {
+          "command": "gitBranchDescription.switch",
+          "when": "false"
+        },
+        {
+          "command": "gitBranchDescription.delete",
+          "when": "false"
+        },
+        {
+          "command": "gitBranchDescription.copyName",
+          "when": "false"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gitBranchDescription.copyName",
+          "when": "viewItem =~ /^branch/",
+          "group": "inline@1"
+        },
+        {
+          "command": "gitBranchDescription.switch",
+          "when": "viewItem == branch",
+          "group": "inline@2"
+        },
+        {
+          "command": "gitBranchDescription.delete",
+          "when": "viewItem == branch",
+          "group": "inline@3"
+        },
+        {
+          "command": "gitBranchDescription.edit",
+          "when": "viewItem =~ /^branch/",
+          "group": "1_edit"
+        },
+        {
+          "command": "gitBranchDescription.switch",
+          "when": "viewItem == branch",
+          "group": "1_edit"
+        },
+        {
+          "command": "gitBranchDescription.copyName",
+          "when": "viewItem =~ /^branch/",
+          "group": "2_copy"
+        },
+        {
+          "command": "gitBranchDescription.delete",
+          "when": "viewItem == branch",
+          "group": "9_danger"
+        }
+      ]
+    }
+  },
+  "keywords": [
+    "git",
+    "branch",
+    "description",
+    "note",
+    "memo",
+    "switch branch"
+  ],
+  "galleryBanner": {
+    "color": "#1f2937",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iqbalrpambudi/branch-memo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iqbalrpambudi/branch-memo/issues"
+  },
+  "homepage": "https://github.com/iqbalrpambudi/branch-memo#readme"
+}
